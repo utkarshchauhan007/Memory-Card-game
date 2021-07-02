@@ -1,0 +1,182 @@
+@font-face {
+    font-family: "creepy";
+    src: url("Creepy.woff") format("woff") , url(
+        "Creepy.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "lunacy";
+    src: url("Lunacy.woff") format("woff") , url(
+        "Lunacy.woff2") format("woff2")
+}
+
+*{
+  box-sizing: border-box ;
+
+}
+
+body{
+    margin: 0  ;
+    background : radial-gradient(rgb(171 113 40), rgb(43 30 0));
+    min-height: 100vh;
+    cursor: url("Ghost.cur"), auto;
+}
+.pt{
+    color:rgb(255, 123, 0) ;
+    font-family: creepy, serif; 
+    font-weight: normal ;
+    text-align : center ;
+    font-size: 6em ;
+     
+}
+.gic{
+grid-column: 1/-1 ;
+display: flex ;
+justify-content: space-between;
+}
+.gi{
+    font-family: Lunacy , serif;
+    color: rgb(235, 173, 102) ;
+    font-size: 4em;
+
+}
+.gc{
+    display: grid;
+    grid-template-columns: repeat(4,auto) ;
+    grid-gap:10px ;
+    margin: 50px; 
+    justify-content: center;
+    perspective: 500px ;
+}
+.card{
+    position: relative ;
+    
+    height: 175px ;
+    width: 125px ;
+    border-radius: 12px;
+
+}
+.cf{
+    position: absolute ;
+    width:100% ;
+    height: 100% ;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    border-width: 1px; 
+    border-style: solid;
+    transition: transform 500ms ease-in-out ;
+}
+.cb{
+    background-color: black;
+    border-color: rgb(235, 173, 102) ;
+}
+.cfront{
+    background-color:rgb(235, 173, 102) ; ;
+    transform: rotateY(180deg);
+    border-color: black;
+}
+.cval{
+    transform: scale(.9);
+    transition: transform 100ms ease-in-out ;
+}
+.cfront:hover .cval{
+    transform: scale(1) ;
+}
+.cw{
+    position:absolute ;
+    width: 47px ;
+    height: 47px;
+    transition: width 100ms ease-in-out ,height 100ms ease-in-out ; 
+}
+.card:hover{
+    cursor: url('GhostHover.cur'),auto;
+}
+.cb:hover .cw{
+width: 52px ;
+height: 52px ;
+} 
+.cw.tleft{
+    transform: rotate(270deg) ;
+    top:0 ;
+    left:0 ;
+}
+.cw.tright{
+    top:0 ;
+    right:0 ;
+}
+.cw.bleft{
+    transform: rotate(180deg);
+    bottom: 0 ;
+    left: 0;
+}
+.cw.bright{
+    transform: rotate(90deg);
+    bottom: 0 ;
+    right: 0;
+}
+.spider{
+    align-self: flex-start ;
+    transform: translateY(-10px);
+    transition: transform 100ms ease-in-out ;
+
+}
+.cb:hover .spider{
+    transform : translateY(0) ;
+
+}
+.card.visible .cb{
+   transform: rotateY(180deg); 
+}
+.card.visible .cfront{
+    transform: rotateY(0);
+}
+.card.matched .cval{
+    animation: dance 1s linear  infinite 500ms ;
+}
+@keyframes dance {
+    0%, 100%{
+        transform: rotate(0) ;
+    }
+    25%{
+      transform: rotate(-30deg) ;  
+    }
+    75%{
+        transform: rotate(30deg) ; 
+    }
+}
+.ovrl-txt{
+    display: none;
+    position: fixed;
+    top:0 ;
+    left :0 ;
+    right:0 ;
+    bottom:0 ;
+    justify-content: center ;
+    align-items: center;
+    z-index: 100 ;
+    color:rgb(255, 123, 0) ;
+    font-family: "creepy";
+}
+.ovrl-txt.visible{
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards  ;
+}
+@keyframes overlay-grow {
+    from{
+        background-color: rgba(0,0,0,0);
+        font-size: 0 ;
+    }
+    to{
+        background-color: rgba(0,0,0,.8);
+        font-size: 10em;
+    }
+    
+}
+.ovrl-txt-small{
+    font-size: .3em;
+}
